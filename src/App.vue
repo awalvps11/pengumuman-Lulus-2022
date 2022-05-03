@@ -1,11 +1,17 @@
 <template>
+  <div>
+    <Nav />
+  </div>
   <div class="container">
     <div
-      class="row justify-content-center"
+      class="row justify-content-center mt-5 pt-5"
       v-if="day >= 0 && hour >= 0 && minute >= 0 && second >= 0"
     >
       <div class="col-md-5">
-        <table class="table table-bordered mt-5 text-center rounded-4 shadow">
+        <table
+          class="table table-bordered mt-5 text-center rounded-4 shadow"
+          id="table"
+        >
           <thead class="bg-warning text-white">
             <tr>
               <th>
@@ -31,6 +37,9 @@
             </tr>
           </tbody>
         </table>
+        <p class="text-sm-end fw-lighter fst-italic text-danger">
+          Silahkan Menunggu
+        </p>
       </div>
     </div>
     <span v-else>
@@ -43,8 +52,9 @@
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import Cari from "./components/Cari.vue";
+import Nav from "./components/Nav.vue";
 
-const countDownDate = ref(new Date("April 27, 2022 17:37:25").getTime());
+const countDownDate = ref(new Date("May 4, 2022 12:37:25").getTime());
 const now = ref(new Date().getTime());
 let jarak = ref(countDownDate.value - now.value);
 const day = ref(Math.floor(jarak.value / (1000 * 60 * 60 * 24)));
@@ -68,4 +78,8 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+#table {
+  margin-top: 120px;
+}
+</style>
